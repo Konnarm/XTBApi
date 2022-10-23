@@ -415,9 +415,7 @@ class Client(BaseClient):
             cl_pr = (_pr + candle['close']) / 10 ** res['digits']
             hg_pr = (_pr + candle['high']) / 10 ** res['digits']
             lw_pr = (_pr + candle['low']) / 10 ** res['digits']
-            new_candle_entry = {'timestamp': candle['ctm'] / 1000, 'open':
-                op_pr, 'close': cl_pr, 'high': hg_pr, 'low': lw_pr,
-                                'volume': candle['vol']}
+            new_candle_entry = [candle['ctm'] / 1000, op_pr, hg_pr, lw_pr, cl_pr, candle['vol']]
             candle_history.append(new_candle_entry)
         LOGGER.debug(candle_history)
         return candle_history
