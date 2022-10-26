@@ -107,7 +107,7 @@ class BaseClient(object):
         self.LOGGER = logging.getLogger('XTBApi.api.BaseClient')
 
     def _login_decorator(self, func, *args, **kwargs):
-        if self.status == STATUS.NOT_LOGGED:
+        if self.status == STATUS.NOT_LOGGED and not self._login_data:
             raise NotLogged()
         try:
             return func(*args, **kwargs)
