@@ -462,7 +462,7 @@ class Client(BaseClient):
         status = self.trade_transaction_status(response['order'])[
             'requestStatus']
         self.LOGGER.debug(f"open_trade completed with status of {status}")
-        if status != 3:
+        if status not in [1, 3]:
             raise TransactionRejected(status)
         return response
 
@@ -483,7 +483,7 @@ class Client(BaseClient):
         status = self.trade_transaction_status(
             response['order'])['requestStatus']
         self.LOGGER.debug(f"close_trade completed with status of {status}")
-        if status != 3:
+        if status not in [1, 3]:
             raise TransactionRejected(status)
         return response
 
